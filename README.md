@@ -13,25 +13,25 @@ n = 0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd036414
 n = 115792089237316195423570985008687907852837564279074904382605163141518161494337
 ```
 
-**Public-Private-Key-Relationship**
+### Public-Private-Key-Relationship
 
 $$ Q_{A} = d_{A} \cdot G $$
 
 $Q_{A}$ is the public key, $d_{A}$ is the private key, and $G$ is the elliptic curve base point.
 
-**The secp256k1 32-byte signature parameter `r`**
+### The secp256k1 32-Byte Signature Parameter `r`**
 
 $$ r = G \cdot k \quad \left(\textnormal{mod} \enspace n\right) $$
 
 $r$ is the first secp256k1 32-byte signature parameter, $n$ is the integer order of $G$, and $k$ is the random nonce value.
 
-**The secp256k1 32-byte signature parameter `s`**
+### The secp256k1 32-Byte Signature Parameter `s`
 
 $$ s = \frac{h + d_{A} \cdot r}{k} \quad \left(\textnormal{mod} \enspace n\right) $$
 
 $s$ is the second secp256k1 32-byte signature parameter, $h$ is the 32-byte message digest of a message.
 
-**Recover the Private Key**
+### Recover the Private Key
 
 Let's assume that $d_{A}$ has used the same random value $k$ for two different signatures. This implies from the above definition of $r$ that $r$ is the same for both signatures, since $G$ and $n$ are constants. Thus, we have:
 
