@@ -27,7 +27,7 @@ def recover_private_key(h1, h2, s1, s2, r1, r2, n):
             The secp256k1 32-byte signature parameter `r1`.
         r2: int
             The secp256k1 32-byte signature parameter `r2`.
-        n: int
+        n:  int
             The 32-byte integer order of G (part of the public key).
 
     Returns
