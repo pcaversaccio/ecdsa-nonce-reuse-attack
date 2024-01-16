@@ -1,6 +1,6 @@
 # ECDSA Nonce Reuse Attack
 
-This repository implements a [function](./recover_private_key.py) that recovers the private key from two different signatures that use the same random nonce `k` during signature generation. Note that if `k` is reused in two signatures, this implies that the secp256k1 32-byte signature parameter `r` is be identical. This property is asserted in this function.
+This repository implements a Python function [`recover_private_key`](./recover_private_key.py) that recovers the private key from two different signatures that use the same random nonce $k$ during signature generation. Note that if $k$ is reused in two signatures, this implies that the secp256k1 32-byte signature parameter $r$ is be identical. This property is asserted in this function.
 
 ## Mathematical Derivation
 
@@ -19,13 +19,13 @@ $$ Q_{A} = d_{A} \cdot G $$
 
 $Q_{A}$ is the public key, $d_{A}$ is the private key, and $G$ is the elliptic curve base point.
 
-#### The secp256k1 32-Byte Signature Parameter `r`
+#### The secp256k1 32-Byte Signature Parameter $r$
 
 $$ r = G \cdot k \quad \left(\textnormal{mod} \enspace n\right) $$
 
 $r$ is the first secp256k1 32-byte signature parameter, $n$ is the integer order of $G$, and $k$ is the random nonce value.
 
-#### The secp256k1 32-Byte Signature Parameter `s`
+#### The secp256k1 32-Byte Signature Parameter $s$
 
 $$ s = \frac{h + d_{A} \cdot r}{k} \quad \left(\textnormal{mod} \enspace n\right) $$
 
