@@ -14,16 +14,19 @@ n = 1157920892373161954235709850086879078528375642790749043826051631415181614943
 ```
 
 **Public-Private-Key-Relationship**
+
 $$ Q_{A} = d_{A} \cdot G $$
 
 $Q_{A}$ is the public key, $d_{A}$ is the private key, and $G$ is the elliptic curve base point.
 
 **The secp256k1 32-byte signature parameter `r`**
+
 $$ r = G \cdot k \quad \left(\textnormal{mod} \enspace n\right) $$
 
 $r$ is the first secp256k1 32-byte signature parameter, $n$ is the integer order of $G$, and $k$ is the random nonce value.
 
 **The secp256k1 32-byte signature parameter `s`**
+
 $$ s = \frac{h + d_{A} \cdot r}{k} \quad \left(\textnormal{mod} \enspace n\right) $$
 
 $s$ is the second secp256k1 32-byte signature parameter, $h$ is the 32-byte message digest of a message.
@@ -38,23 +41,23 @@ and
 
 $$ s_{2} = \frac{h_{2} + d_{A} \cdot r}{k} \quad \left(\textnormal{mod} \enspace n\right). $$
 
-Given the above system of equations we can solve for $k$:
+We can solve for $k$ with the above system of equations:
 
-$$ s_{1} - s_{2} =  \frac{h_{1} + d_{A} \cdot r}{k} - \frac{h_{2} + d_{A} \cdot r}{k} \quad \left(\textnormal{mod} \enspace n\right),$$
+$$ s_{1} - s_{2} =  \frac{h_{1} + d_{A} \cdot r}{k} - \frac{h_{2} + d_{A} \cdot r}{k} \quad \left(\textnormal{mod} \enspace n\right), $$
 
-$$ s_{1} - s_{2} =  \frac{h_{1} + d_{A} \cdot r - h_{2} - d_{A} \cdot r}{k}\quad \left(\textnormal{mod} \enspace n\right),$$
+$$ s_{1} - s_{2} =  \frac{h_{1} + d_{A} \cdot r - h_{2} - d_{A} \cdot r}{k}\quad \left(\textnormal{mod} \enspace n\right), $$
 
-$$ s_{1} - s_{2} =  \frac{h_{1} - h_{2}}{k}\quad \left(\textnormal{mod} \enspace n\right),$$
+$$ s_{1} - s_{2} =  \frac{h_{1} - h_{2}}{k}\quad \left(\textnormal{mod} \enspace n\right), $$
 
-$$ k =  \frac{h_{1} - h_{2}}{s_{1} - s_{2}}\quad \left(\textnormal{mod} \enspace n\right).$$
+$$ k =  \frac{h_{1} - h_{2}}{s_{1} - s_{2}}\quad \left(\textnormal{mod} \enspace n\right). $$
 
-Eventually, we can now plugin $k$ into the $s_{1}$ equation and solve for the privat key $d_{A}$:
+Eventually, we can now plug $k$ into the equation $s_{1}$ and determine the private key $d_{A}$:
 
-$$ s_{1} = \frac{h_{1} + d_{A} \cdot r}{\frac{h_{1} - h_{2}}{s_{1} - s_{2}}} \quad \left(\textnormal{mod} \enspace n\right),$$
+$$ s_{1} = \frac{h_{1} + d_{A} \cdot r}{\frac{h_{1} - h_{2}}{s_{1} - s_{2}}} \quad \left(\textnormal{mod} \enspace n\right), $$
 
-$$ s_{1} = \frac{\left(s_{1} - s_{2}\right)\cdot\left(h_{1} + d_{A} \cdot r\right)}{h_{1} - h_{2}} \quad \left(\textnormal{mod} \enspace n\right),$$
+$$ s_{1} = \frac{\left(s_{1} - s_{2}\right)\cdot\left(h_{1} + d_{A} \cdot r\right)}{h_{1} - h_{2}} \quad \left(\textnormal{mod} \enspace n\right), $$
 
-$$ d_{A} = \frac{(s_{2} \cdot h_{1} - s_{1} \cdot h_{2})}{r \cdot (s_{1} - s_{2})} \quad \left(\textnormal{mod} \enspace n\right).$$
+$$ d_{A} = \frac{(s_{2} \cdot h_{1} - s_{1} \cdot h_{2})}{r \cdot (s_{1} - s_{2})} \quad \left(\textnormal{mod} \enspace n\right). $$
 
 ## Further References
 
