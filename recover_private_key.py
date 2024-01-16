@@ -34,9 +34,14 @@ def recover_private_key(h1, h2, s1, s2, r1, r2, n):
     -------
         pk: int
             The recovered 32-byte private key.
+
+    Raises
+    ------
+        AssertionError
+            No ECDSA nonce reuse detected.
     """
-    assert r1 == r2, "No ECDSA nonce reuse detected"
-    return ((s2 * h1 - s1 * h2) / (r1 * (s1 - s2))) % n
+    assert r1 == r2, "No ECDSA nonce reuse detected."
+    return ((s2 * h1 - s1 * h2) * inverse_mod(r1 * (s1 - s2), n)) % n
 
 
 if __name__ == "__main__":

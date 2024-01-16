@@ -51,13 +51,15 @@ $$ s_{1} - s_{2} =  \frac{h_{1} - h_{2}}{k}\quad \left(\textnormal{mod} \enspace
 
 $$ k =  \frac{h_{1} - h_{2}}{s_{1} - s_{2}}\quad \left(\textnormal{mod} \enspace n\right). $$
 
-Eventually, we can now plug $k$ into the equation $s_{1}$ and determine the private key $d_{A}$:
+Eventually, we can now plug $k$ into the equation $s_{1}$ and recover the private key $d_{A}$:
 
 $$ s_{1} = \frac{h_{1} + d_{A} \cdot r}{\frac{h_{1} - h_{2}}{s_{1} - s_{2}}} \quad \left(\textnormal{mod} \enspace n\right), $$
 
 $$ s_{1} = \frac{\left(s_{1} - s_{2}\right)\cdot\left(h_{1} + d_{A} \cdot r\right)}{h_{1} - h_{2}} \quad \left(\textnormal{mod} \enspace n\right), $$
 
 $$ d_{A} = \frac{(s_{2} \cdot h_{1} - s_{1} \cdot h_{2})}{r \cdot (s_{1} - s_{2})} \quad \left(\textnormal{mod} \enspace n\right). $$
+
+> The function [`recover_private_key`](./recover_private_key.py) uses the last equation in conjunction with modular arithmetic properties to recover the private key.
 
 ## Further References
 
