@@ -40,7 +40,7 @@ $$ d_{A} \mod n = \frac{(s_{2} \cdot h_{1} - s_{1} \cdot h_{2})}{r \cdot (s_{1} 
 
 ## References
 - https://bertcmiller.com/2021/12/28/glimpse_nonce_reuse.html
-- k caluculation: https://datatracker.ietf.org/doc/html/rfc6979#section-3.2
+- https://datatracker.ietf.org/doc/html/rfc6979
 - https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm
 - https://www.halborn.com/blog/post/how-hackers-can-exploit-weak-ecdsa-signatures
 - https://github.com/Marsh61/ECDSA-Nonce-Reuse-Exploit-Example
