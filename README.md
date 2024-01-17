@@ -1,5 +1,8 @@
 # 🛡️ ECDSA Nonce Reuse Attack
 
+[![👮‍♂️ Sanity checks](https://github.com/pcaversaccio/ecdsa-nonce-reuse-attack/actions/workflows/checks.yml/badge.svg)](https://github.com/pcaversaccio/ecdsa-nonce-reuse-attack/actions/workflows/checks.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/license/mit/)
+
 This repository implements a Python function [`recover_private_key`](https://github.com/pcaversaccio/ecdsa-nonce-reuse-attack/blob/main/scripts/recover_private_key.py) that recovers the private key from two different signatures that use the same random nonce $k$ during signature generation. Note that if the same $k$ is used in two signatures, this implies that the secp256k1 32-byte signature parameter $r$ is identical. This property is asserted in this function.
 
 ## 🧠 Mathematical Derivation

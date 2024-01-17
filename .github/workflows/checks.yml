@@ -45,4 +45,6 @@ jobs:
           src: "./scripts"
 
       - name: Check private key recovery
-        run: python scripts/recover_private_key.py
+        run: |
+          pip install ecdsa
+          python scripts/recover_private_key.py
