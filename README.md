@@ -15,19 +15,25 @@ n = 1157920892373161954235709850086879078528375642790749043826051631415181614943
 
 #### 1. Public-Private-Key-Relationship
 
+<!-- prettier-ignore-start -->
 $$ Q_{A} = d_{A} \cdot G $$
+<!-- prettier-ignore-end -->
 
 $Q_{A}$ is the public key, $d_{A}$ is the private key, and $G$ is the elliptic curve base point.
 
 #### 2. The secp256k1 32-Byte Signature Parameter $r$
 
+<!-- prettier-ignore-start -->
 $$ r = G \cdot k \quad \left(\textnormal{mod} \enspace n\right) $$
+<!-- prettier-ignore-end -->
 
 $r$ is the first secp256k1 32-byte signature parameter, $n$ is the integer order of $G$, and $k$ is the random nonce value.
 
 #### 3. The secp256k1 32-Byte Signature Parameter $s$
 
+<!-- prettier-ignore-start -->
 $$ s = \frac{h + d_{A} \cdot r}{k} \quad \left(\textnormal{mod} \enspace n\right) $$
+<!-- prettier-ignore-end -->
 
 $s$ is the second secp256k1 32-byte signature parameter and $h$ is the 32-byte message digest of a message.
 
@@ -35,14 +41,19 @@ $s$ is the second secp256k1 32-byte signature parameter and $h$ is the 32-byte m
 
 Let's assume that $d_{A}$ has used the same random value $k$ for two different signatures. This implies from the above definition of $r$ that $r$ is the same for both signatures, since $G$ and $n$ are constants. Thus, we have:
 
+<!-- prettier-ignore-start -->
 $$ s_{1} = \frac{h_{1} + d_{A} \cdot r}{k} \quad \left(\textnormal{mod} \enspace n\right) $$
+<!-- prettier-ignore-end -->
 
 and
 
+<!-- prettier-ignore-start -->
 $$ s_{2} = \frac{h_{2} + d_{A} \cdot r}{k} \quad \left(\textnormal{mod} \enspace n\right). $$
+<!-- prettier-ignore-end -->
 
 We can solve for $k$ with the above system of equations:
 
+<!-- prettier-ignore-start -->
 $$ s_{1} - s_{2} =  \frac{h_{1} + d_{A} \cdot r}{k} - \frac{h_{2} + d_{A} \cdot r}{k} \quad \left(\textnormal{mod} \enspace n\right), $$
 
 $$ s_{1} - s_{2} =  \frac{h_{1} + d_{A} \cdot r - h_{2} - d_{A} \cdot r}{k}\quad \left(\textnormal{mod} \enspace n\right), $$
@@ -50,14 +61,17 @@ $$ s_{1} - s_{2} =  \frac{h_{1} + d_{A} \cdot r - h_{2} - d_{A} \cdot r}{k}\quad
 $$ s_{1} - s_{2} =  \frac{h_{1} - h_{2}}{k}\quad \left(\textnormal{mod} \enspace n\right), $$
 
 $$ k =  \frac{h_{1} - h_{2}}{s_{1} - s_{2}}\quad \left(\textnormal{mod} \enspace n\right). $$
+<!-- prettier-ignore-end -->
 
 Eventually, we can now plug $k$ into the equation $s_{1}$ and recover the private key $d_{A}$:
 
+<!-- prettier-ignore-start -->
 $$ s_{1} = \frac{h_{1} + d_{A} \cdot r}{\frac{h_{1} - h_{2}}{s_{1} - s_{2}}} \quad \left(\textnormal{mod} \enspace n\right), $$
 
 $$ s_{1} = \frac{\left(s_{1} - s_{2}\right)\cdot\left(h_{1} + d_{A} \cdot r\right)}{h_{1} - h_{2}} \quad \left(\textnormal{mod} \enspace n\right), $$
 
 $$ d_{A} = \frac{(s_{2} \cdot h_{1} - s_{1} \cdot h_{2})}{r \cdot (s_{1} - s_{2})} \quad \left(\textnormal{mod} \enspace n\right). $$
+<!-- prettier-ignore-end -->
 
 > The function [`recover_private_key`](./scripts/recover_private_key.py) uses the last equation in conjunction with modular arithmetic properties to recover the private key.
 

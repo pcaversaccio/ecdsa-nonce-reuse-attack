@@ -1,0 +1,48 @@
+name: 👮‍♂️ Sanity checks
+
+on: [push, pull_request, workflow_dispatch]
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+        architecture:
+          - x64
+        python_version:
+          - 3.11
+        node_version:
+          - 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node_version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      - name: Run Prettier
+        run: npx prettier -c '**/*.{md,yml,yaml}'
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python_version }}
+          architecture: ${{ matrix.architecture }}
+
+      - name: Check formatting with Black
+        uses: psf/black@stable
+        with:
+          options: "--check --verbose"
+          src: "./scripts"
+
+      - name: Check private key recovery
+        run: python scripts/recover_private_key.py
