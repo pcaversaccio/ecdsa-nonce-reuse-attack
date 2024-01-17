@@ -1,4 +1,4 @@
-import hashlib
+from hashlib import sha256
 from ecdsa import SECP256k1, SigningKey
 from ecdsa.util import sigdecode_string
 from ecdsa.numbertheory import inverse_mod
@@ -8,10 +8,11 @@ def recover_private_key(h1, h2, s1, s2, r1, r2, n):
     """Recover the private key via nonce reuse.
 
     Recover the private key from two different signatures
-    that use the same random nonce `k` during signature generation.
-    Note that if `k` is reused in two signatures, this implies that
-    the secp256k1 32-byte signature parameter `r` is be identical.
-    This property is asserted in this function.
+    that use the same random nonce `k` during signature
+    generation. Note that if the same `k` is used in two
+    signatures, this implies that the secp256k1 32-byte
+    signature parameter `r` is identical. This property is
+    asserted in this function.
 
     Parameters
     ----------
@@ -59,12 +60,12 @@ if __name__ == "__main__":
     Q_A = d_A.verifying_key
 
     # Generate the message digests.
-    h1 = hashlib.sha256(m1).hexdigest()
-    h2 = hashlib.sha256(m2).hexdigest()
+    h1 = sha256(m1).hexdigest()
+    h2 = sha256(m2).hexdigest()
 
     # Generate the signatures using the same `k` value.
-    signature_1 = d_A.sign(m1, hashfunc=hashlib.sha256, k=k)
-    signature_2 = d_A.sign(m2, hashfunc=hashlib.sha256, k=k)
+    signature_1 = d_A.sign(m1, hashfunc=sha256, k=k)
+    signature_2 = d_A.sign(m2, hashfunc=sha256, k=k)
 
     # Retrieve the secp256k1 32-byte signature parameters `r` and `s`.
     (r1, s1) = sigdecode_string(signature_1, n)
