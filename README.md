@@ -1,6 +1,6 @@
 # 🛡️ ECDSA Nonce Reuse Attack
 
-This repository implements a Python function [`recover_private_key`](https://github.com/pcaversaccio/ecdsa-nonce-reuse-attack/blob/main/recover_private_key.py) that recovers the private key from two different signatures that use the same random nonce $k$ during signature generation. Note that if the same $k$ is used in two signatures, this implies that the secp256k1 32-byte signature parameter $r$ is identical. This property is asserted in this function.
+This repository implements a Python function [`recover_private_key`](./scripts/recover_private_key.py) that recovers the private key from two different signatures that use the same random nonce $k$ during signature generation. Note that if the same $k$ is used in two signatures, this implies that the secp256k1 32-byte signature parameter $r$ is identical. This property is asserted in this function.
 
 ## 🧠 Mathematical Derivation
 
@@ -59,7 +59,7 @@ $$ s_{1} = \frac{\left(s_{1} - s_{2}\right)\cdot\left(h_{1} + d_{A} \cdot r\righ
 
 $$ d_{A} = \frac{(s_{2} \cdot h_{1} - s_{1} \cdot h_{2})}{r \cdot (s_{1} - s_{2})} \quad \left(\textnormal{mod} \enspace n\right). $$
 
-> The function [`recover_private_key`](./recover_private_key.py) uses the last equation in conjunction with modular arithmetic properties to recover the private key.
+> The function [`recover_private_key`](./scripts/recover_private_key.py) uses the last equation in conjunction with modular arithmetic properties to recover the private key.
 
 ## 📚 Further References
 
