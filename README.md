@@ -7,9 +7,9 @@ This repository implements a Python function [`recover_private_key`](./recover_p
 First, note that the integer order $n$ of $G$ (a base point of prime order on the curve) for the [secp256k1 elliptic curve](https://en.bitcoin.it/wiki/Secp256k1) is:
 
 ```console
-# as hex value
+# Represented as hex value.
 n = 0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd036414
-# as integer value
+# Represented as integer value.
 n = 115792089237316195423570985008687907852837564279074904382605163141518161494337
 ```
 
@@ -29,7 +29,7 @@ $r$ is the first secp256k1 32-byte signature parameter, $n$ is the integer order
 
 $$ s = \frac{h + d_{A} \cdot r}{k} \quad \left(\textnormal{mod} \enspace n\right) $$
 
-$s$ is the second secp256k1 32-byte signature parameter, $h$ is the 32-byte message digest of a message.
+$s$ is the second secp256k1 32-byte signature parameter and $h$ is the 32-byte message digest of a message.
 
 #### 4. Recover the Private Key
 
