@@ -46,7 +46,7 @@ jobs:
 
       - name: Check private key recovery
         run: |
-          pip install ecdsa
+          pip install -r requirements.txt
           python scripts/recover_private_key.py
 
   codespell:
