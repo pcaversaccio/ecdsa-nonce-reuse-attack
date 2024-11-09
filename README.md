@@ -82,7 +82,7 @@ $$ d_{A} = \frac{(s_{2} \cdot h_{1} - s_{1} \cdot h_{2})}{r \cdot (s_{1} - s_{2}
 
 - [Elliptic Curve Digital Signature Algorithm](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm)
 - [RFC 6979](https://datatracker.ietf.org/doc/html/rfc6979)
-- [A Glimpse of the Deep: Finding a Creature in Ethereum's Dark Forest](https://web.archive.org/web/20240930175728/https://bertcmiller.com/2021/12/28/glimpse_nonce_reuse.html)
+- [A Glimpse of the Deep: Finding a Creature in Ethereum's Dark Forest](https://bertcmiller.com/glimpse.html)
 - [How Hackers Can Exploit Weak ECDSA Signatures](https://www.halborn.com/blog/post/how-hackers-can-exploit-weak-ecdsa-signatures)
 - [ECDSA Nonce Reuse Exploit Example](https://github.com/Marsh61/ECDSA-Nonce-Reuse-Exploit-Example)
 - [Identifying Key Leakage of Bitcoin Users](https://link.springer.com/content/pdf/10.1007/978-3-030-00470-5_29.pdf)
