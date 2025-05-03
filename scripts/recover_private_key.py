@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from hashlib import sha256
 from ecdsa import SECP256k1, SigningKey
 from ecdsa.util import sigdecode_string
