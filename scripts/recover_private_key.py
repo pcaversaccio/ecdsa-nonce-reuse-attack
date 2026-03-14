@@ -69,8 +69,8 @@ if __name__ == "__main__":
     signature_2 = d_A.sign(m2, hashfunc=sha256, k=k)
 
     # Retrieve the secp256k1 32-byte signature parameters `r` and `s`.
-    (r1, s1) = sigdecode_string(signature_1, n)
-    (r2, s2) = sigdecode_string(signature_2, n)
+    r1, s1 = sigdecode_string(signature_1, n)
+    r2, s2 = sigdecode_string(signature_2, n)
 
     # Recover the private key.
     recovered_private_key = recover_private_key(
